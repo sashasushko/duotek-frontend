@@ -1,0 +1,18 @@
+{
+  "name": "gulp-duotek",
+  "version": "0.1.0",
+  "description": "Front-end tools | www.duotek.ru",
+  "scripts": {
+    "test": "echo \"Error: There is no bathroom...\" && exit 1"
+  },
+  "author": "Sasha Sushko | www.sushko.me",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.1",
+    "gulp-sourcemaps": "^2.0.0-alpha"
+  }
+}
