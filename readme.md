@@ -4,6 +4,9 @@
 
 ### ToDo:
 
+- Собрать типовую HTML5-форму
+- Первичная валидация на псевдоклассах http://prgssr.ru/development/polnoe-rukovodstvo-po-psevdoklassam-i-psevdoelementam.html в дополнение к JS-валидации
+- Добавить Экспромптум для JS-валидации форм
 - Ознакомиться (и подключить) HTML5 Boilerplate
 - Перейти с Sass на CSSnext
 - Настроить сборку спрайтов в Gulp
