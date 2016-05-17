@@ -1,0 +1,88 @@
+$phone-to: 480px;
+
+$smartphone-from: $phone-to + 1;
+$smartphone-to: 640px;
+
+$tablet-from: $smartphone-to + 1;
+$tablet-to: 768px;
+
+$notebook-from: $tablet-to + 1;
+$notebook-to: 1024px;
+
+$desktop-from: $notebook-to + 1;
+
+@mixin media($device) {
+	@if($device == "desktop"){
+		@media screen and (min-width:$desktop-from){
+			@content;
+		}
+	}
+	@if($device == "notebook-desktop"){
+		@media screen and (min-width:$notebook-from){
+			@content;
+		}
+	}
+	@if($device == "notebook"){
+		@media screen and (min-width:$notebook-from) and (max-width:$notebook-to){
+			@content;
+		}
+	}
+	@if($device == "tablet-desktop"){
+		@media screen and (min-width:$tablet-from){
+			@content;
+		}
+	}
+	@if($device == "tablet-notebook"){
+		@media screen and (min-width:$tablet-from) and (max-width:$notebook-to){
+			@content;
+		}
+	}
+	@if($device == "tablet"){
+		@media screen and (min-width:$tablet-from) and (max-width:$tablet-to){
+			@content;
+		}
+	}
+	@if($device == "smartphone-desktop"){
+		@media screen and (min-width:$smartphone-from){
+			@content;
+		}
+	}
+	@if($device == "smartphone-notebook"){
+		@media screen and (min-width:$smartphone-from) and (max-width:$notebook-to){
+			@content;
+		}
+	}
+	@if($device == "smartphone-tablet"){
+		@media screen and (min-width:$smartphone-from) and (max-width:$tablet-to){
+			@content;
+		}
+	}
+	@if($device == "smartphone"){
+		@media screen and (min-width:$smartphone-from) and (max-width:$smartphone-to){
+			@content;
+		}
+	}
+	@if($device == "phone-desktop"){
+		@content;
+	}
+	@if($device == "phone-notebook"){
+		@media screen and (max-width:$notebook-to){
+			@content;
+		}
+	}
+	@if($device == "phone-tablet"){
+		@media screen and (max-width:$tablet-to){
+			@content;
+		}
+	}
+	@if($device == "phone-smartphone"){
+		@media screen and (max-width:$smartphone-to){
+			@content;
+		}
+	}
+	@if($device == "phone"){
+		@media screen and (max-width:$phone-to){
+			@content;
+		}
+	}
+}
