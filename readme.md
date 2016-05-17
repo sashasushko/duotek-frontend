@@ -5,7 +5,7 @@
 ### ToDo:
 
 - Собрать типовую HTML5-форму
-- Первичная валидация на псевдоклассах http://prgssr.ru/development/polnoe-rukovodstvo-po-psevdoklassam-i-psevdoelementam.html в дополнение к JS-валидации
+- [Первичная валидация на псевдоклассах][cssValidate] в дополнение к JS-валидации
 - Добавить Экспромптум для JS-валидации форм
 - Ознакомиться (и подключить) HTML5 Boilerplate
 - Перейти с Sass на CSSnext
@@ -14,3 +14,6 @@
 - Придумать и настроить сборку
 - Проверить поддержку IE9 и указать поддерживаемые версии других браузеров
 - Настроить Autoprefixer согласно поддержке браузеров
+
+
+[cssValidate]: http://prgssr.ru/development/polnoe-rukovodstvo-po-psevdoklassam-i-psevdoelementam.html "Полное руководство по псевдоклассам и псевдоэлементам"
