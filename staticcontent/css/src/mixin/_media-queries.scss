@@ -57,22 +57,22 @@ $hires-from: $desktop-to + 1;
 
 	// for tablet and from tablet
 	@if($device == "tablet-hires"){
-		@media screen and (min-width:$notebook-from){
+		@media screen and (min-width:$tablet-from){
 			@content;
 		}
 	}
 	@if($device == "tablet-desktop"){
-		@media screen and (min-width:$notebook-from) and (max-width:$desktop-to){
+		@media screen and (min-width:$tablet-from) and (max-width:$desktop-to){
 			@content;
 		}
 	}
 	@if($device == "tablet-notebook"){
-		@media screen and (min-width:$notebook-from) and (max-width:$notebook-to){
+		@media screen and (min-width:$tablet-from) and (max-width:$notebook-to){
 			@content;
 		}
 	}
 	@if($device == "tablet"){
-		@media screen and (min-width:$notebook-from) and (max-width:$tablet-to){
+		@media screen and (min-width:$tablet-from) and (max-width:$tablet-to){
 			@content;
 		}
 	}
@@ -125,6 +125,11 @@ $hires-from: $desktop-to + 1;
 			@content;
 		}
 	}
+	@if($device == "smartphone-ereader"){
+		@media screen and (min-width:$smartphone-from) and (max-width:$ereader-to){
+			@content;
+		}
+	}
 	@if($device == "smartphone"){
 		@media screen and (min-width:$smartphone-from) and (max-width:$smartphone-to){
 			@content;
@@ -147,6 +152,11 @@ $hires-from: $desktop-to + 1;
 	}
 	@if($device == "phone-tablet"){
 		@media screen and (max-width:$tablet-to){
+			@content;
+		}
+	}
+	@if($device == "phone-ereader"){
+		@media screen and (max-width:$ereader-to){
 			@content;
 		}
 	}
