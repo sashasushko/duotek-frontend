@@ -1,24 +1,51 @@
-$phone-to: 480px;
+$phone-to: 320px;
 
 $smartphone-from: $phone-to + 1;
-$smartphone-to: 640px;
+$smartphone-to: 480px;
 
-$tablet-from: $smartphone-to + 1;
-$tablet-to: 768px;
+$ereader-from: $smartphone-to + 1;
+$ereader-to: 640px;
+
+$tablet-from: $ereader-to + 1;
+$tablet-to: 960px;
 
 $notebook-from: $tablet-to + 1;
 $notebook-to: 1024px;
 
 $desktop-from: $notebook-to + 1;
+$desktop-to: 1280px;
 
-@mixin media($device) {
+$hires-from: $desktop-to + 1;
+
+
+@mixin media($device, $min:false, $max:false) {
+	// for hires
+	@if($device == "hires"){
+		@media screen and (min-width:$hires-from){
+			@content;
+		}
+	}
+
+	// for desktop and from desktop
+	@if($device == "desktop-hires"){
+		@media screen and (min-width:$desktop-from) and (max-width:$hires-to){
+			@content;
+		}
+	}
 	@if($device == "desktop"){
-		@media screen and (min-width:$desktop-from){
+		@media screen and (min-width:$desktop-from) and (max-width:$desktop-to){
+			@content;
+		}
+	}
+
+	// for notebook and from notebook
+	@if($device == "notebook-hires"){
+		@media screen and (min-width:$notebook-from){
 			@content;
 		}
 	}
 	@if($device == "notebook-desktop"){
-		@media screen and (min-width:$notebook-from){
+		@media screen and (min-width:$notebook-from) and (max-width:$desktop-to){
 			@content;
 		}
 	}
@@ -27,23 +54,64 @@ $desktop-from: $notebook-to + 1;
 			@content;
 		}
 	}
+
+	// for tablet and from tablet
+	@if($device == "tablet-hires"){
+		@media screen and (min-width:$notebook-from){
+			@content;
+		}
+	}
 	@if($device == "tablet-desktop"){
-		@media screen and (min-width:$tablet-from){
+		@media screen and (min-width:$notebook-from) and (max-width:$desktop-to){
 			@content;
 		}
 	}
 	@if($device == "tablet-notebook"){
-		@media screen and (min-width:$tablet-from) and (max-width:$notebook-to){
+		@media screen and (min-width:$notebook-from) and (max-width:$notebook-to){
 			@content;
 		}
 	}
 	@if($device == "tablet"){
-		@media screen and (min-width:$tablet-from) and (max-width:$tablet-to){
+		@media screen and (min-width:$notebook-from) and (max-width:$tablet-to){
+			@content;
+		}
+	}
+
+	// for ereader and from ereader
+	@if($device == "ereader-hires"){
+		@media screen and (min-width:$ereader-from){
+			@content;
+		}
+	}
+	@if($device == "ereader-desktop"){
+		@media screen and (min-width:$ereader-from) and (max-width:$desktop-to){
+			@content;
+		}
+	}
+	@if($device == "ereader-notebook"){
+		@media screen and (min-width:$ereader-from) and (max-width:$notebook-to){
+			@content;
+		}
+	}
+	@if($device == "ereader-tablet"){
+		@media screen and (min-width:$ereader-from) and (max-width:$tablet-to){
+			@content;
+		}
+	}
+	@if($device == "ereader"){
+		@media screen and (min-width:$ereader-from) and (max-width:$ereader-to){
+			@content;
+		}
+	}
+
+	// for smartphone and from smartphone
+	@if($device == "smartphone-hires"){
+		@media screen and (min-width:$smartphone-from){
 			@content;
 		}
 	}
 	@if($device == "smartphone-desktop"){
-		@media screen and (min-width:$smartphone-from){
+		@media screen and (min-width:$smartphone-from) and (max-width:$desktop-to){
 			@content;
 		}
 	}
@@ -62,8 +130,15 @@ $desktop-from: $notebook-to + 1;
 			@content;
 		}
 	}
-	@if($device == "phone-desktop"){
+
+	// for phone and from phone
+	@if($device == "phone-hires"){
 		@content;
+	}
+	@if($device == "phone-desktop"){
+		@media screen and (max-width:$desktop-to){
+			@content;
+		}
 	}
 	@if($device == "phone-notebook"){
 		@media screen and (max-width:$notebook-to){
@@ -83,6 +158,23 @@ $desktop-from: $notebook-to + 1;
 	@if($device == "phone"){
 		@media screen and (max-width:$phone-to){
 			@content;
+		}
+	}
+
+	// custom
+	@if($device == "custom"){
+		@if($min != false && $max != false){
+			@media screen and (min-width:$min) and (max-width:$max){
+				@content;
+			}
+		}@else if($min != false){
+			@media screen and (min-width:$min){
+				@content;
+			}
+		}@else if($max != false){
+			@media screen and (max-width:$max){
+				@content;
+			}
 		}
 	}
 }
