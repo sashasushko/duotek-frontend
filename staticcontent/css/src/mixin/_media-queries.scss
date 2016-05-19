@@ -1,19 +1,19 @@
-$phone-to: 320px;
+$phone-to: 480px;
 
 $smartphone-from: $phone-to + 1;
-$smartphone-to: 480px;
+$smartphone-to: 640px;
 
-$ereader-from: $smartphone-to + 1;
-$ereader-to: 640px;
+$phablet-from: $smartphone-to + 1;
+$phablet-to: 768px;
 
-$tablet-from: $ereader-to + 1;
-$tablet-to: 960px;
+$tablet-from: $phablet-to + 1;
+$tablet-to: 1024px;
 
 $notebook-from: $tablet-to + 1;
-$notebook-to: 1024px;
+$notebook-to: 1280;
 
 $desktop-from: $notebook-to + 1;
-$desktop-to: 1280px;
+$desktop-to: 1600px;
 
 $hires-from: $desktop-to + 1;
 
@@ -77,29 +77,29 @@ $hires-from: $desktop-to + 1;
 		}
 	}
 
-	// for ereader and from ereader
-	@if($device == "ereader-hires"){
-		@media screen and (min-width:$ereader-from){
+	// for phablet and from phablet
+	@if($device == "phablet-hires"){
+		@media screen and (min-width:$phablet-from){
 			@content;
 		}
 	}
-	@if($device == "ereader-desktop"){
-		@media screen and (min-width:$ereader-from) and (max-width:$desktop-to){
+	@if($device == "phablet-desktop"){
+		@media screen and (min-width:$phablet-from) and (max-width:$desktop-to){
 			@content;
 		}
 	}
-	@if($device == "ereader-notebook"){
-		@media screen and (min-width:$ereader-from) and (max-width:$notebook-to){
+	@if($device == "phablet-notebook"){
+		@media screen and (min-width:$phablet-from) and (max-width:$notebook-to){
 			@content;
 		}
 	}
-	@if($device == "ereader-tablet"){
-		@media screen and (min-width:$ereader-from) and (max-width:$tablet-to){
+	@if($device == "phablet-tablet"){
+		@media screen and (min-width:$phablet-from) and (max-width:$tablet-to){
 			@content;
 		}
 	}
-	@if($device == "ereader"){
-		@media screen and (min-width:$ereader-from) and (max-width:$ereader-to){
+	@if($device == "phablet"){
+		@media screen and (min-width:$phablet-from) and (max-width:$phablet-to){
 			@content;
 		}
 	}
@@ -125,8 +125,8 @@ $hires-from: $desktop-to + 1;
 			@content;
 		}
 	}
-	@if($device == "smartphone-ereader"){
-		@media screen and (min-width:$smartphone-from) and (max-width:$ereader-to){
+	@if($device == "smartphone-phablet"){
+		@media screen and (min-width:$smartphone-from) and (max-width:$phablet-to){
 			@content;
 		}
 	}
@@ -155,8 +155,8 @@ $hires-from: $desktop-to + 1;
 			@content;
 		}
 	}
-	@if($device == "phone-ereader"){
-		@media screen and (max-width:$ereader-to){
+	@if($device == "phone-phablet"){
+		@media screen and (max-width:$phablet-to){
 			@content;
 		}
 	}
