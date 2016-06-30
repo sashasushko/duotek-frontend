@@ -25,8 +25,7 @@ var processors = [
 gulp.task('styles', function () {
   return gulp.src( './staticcontent/css/src/*.scss' )
     .pipe( sourcemaps.init() )
-	.pipe( sass({outputStyle: 'expanded'} )
-		.on( 'error', sass.logError) )
+	.pipe( sass({ outputStyle: 'expanded'} ).on( 'error', sass.logError) )
     .pipe( postcss(processors) )
     .pipe( sourcemaps.write('.') )
     .pipe( gulp.dest('./staticcontent/css') );
@@ -50,20 +49,18 @@ gulp.task('js', function () {
 });
 
 // Build sprites
-var sprites = [
-	spritesmith({
-		retinaSrcFilter: './staticcontent/img/sprite/*@2x.png',
-		imgName: 'sprite.png',
-		retinaImgName: 'sprite@2x.png',
-		cssName: '_sprites.scss',
-		imgPath: '/staticcontent/img/sprite.png',
-		retinaImgPath:'/staticcontent/img/sprite@2x.png'
-	})
-]
-
 gulp.task('sprites', function () {
 	var spriteData = gulp.src( './staticcontent/img/sprite/*.png' )
-		.pipe( sprites );
+		.pipe(
+			spritesmith({
+				retinaSrcFilter: './staticcontent/img/sprite/*@2x.png',
+				imgName: 'sprite.png',
+				retinaImgName: 'sprite@2x.png',
+				cssName: '_sprites.scss',
+				imgPath: '/staticcontent/img/sprite.png',
+				retinaImgPath:'/staticcontent/img/sprite@2x.png'
+			})
+		);
 	var imgStream = spriteData.img.pipe( gulp.dest('./staticcontent/img') );
 	var cssStream = spriteData.css.pipe( gulp.dest('./staticcontent/css/src/lib') );
 	return merge( imgStream, cssStream );
