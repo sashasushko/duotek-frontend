@@ -2,6 +2,16 @@
 
 @import "mixin/clearfix";
 @import "mixin/links";
+@import "mixin/retina";
 @import "mixin/media-queries";
+@import "mixin/list-no-style";
 
 @import "lib/normalize";
+
+body {
+	background-color: #fff;
+
+	@include media($phone) {
+		background-color: #000;
+	}
+}

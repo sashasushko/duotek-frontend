@@ -1,190 +1,29 @@
-$phone-to: 480px;
+$phone: 0px, 480px;
+$smartphone: 481px, 640px;
+$phablet: 641px, 768px;
+$tablet: 769px, 1024px;
+$notebook: 1025px, 1280px;
+$desktop: 1281px, 1600px;
+$hires: 1601px, false;
 
-$smartphone-from: $phone-to + 1;
-$smartphone-to: 640px;
+@mixin media($value-1, $value-2:"undefined") {
+	$query: false;
 
-$phablet-from: $smartphone-to + 1;
-$phablet-to: 768px;
-
-$tablet-from: $phablet-to + 1;
-$tablet-to: 1024px;
-
-$notebook-from: $tablet-to + 1;
-$notebook-to: 1280;
-
-$desktop-from: $notebook-to + 1;
-$desktop-to: 1600px;
-
-$hires-from: $desktop-to + 1;
-
-
-@mixin media($device, $min:false, $max:false) {
-	// for hires
-	@if($device == "hires"){
-		@media screen and (min-width:$hires-from){
-			@content;
+	@if $value-2 == "undefined" {
+		$query: "(min-width:#{nth($value-1, 1)}) and (max-width:#{nth($value-1, 2)})";
+	} @else {
+		@if ($value-1) and ($value-2) {
+			$query: "(min-width:#{nth($value-1, 1)}) and (max-width:#{nth($value-2, 2)})";
+		} @else if ($value-1) {
+			$query: "(min-width:#{nth($value-1, 1)})";
+		} @else if ($value-2) {
+			$query: "(max-width:#{nth($value-2, 2)})";
 		}
 	}
 
-	// for desktop and from desktop
-	@if($device == "desktop-hires"){
-		@media screen and (min-width:$desktop-from) and (max-width:$hires-to){
+	@if ($query) {
+		@media screen and #{$query} {
 			@content;
-		}
-	}
-	@if($device == "desktop"){
-		@media screen and (min-width:$desktop-from) and (max-width:$desktop-to){
-			@content;
-		}
-	}
-
-	// for notebook and from notebook
-	@if($device == "notebook-hires"){
-		@media screen and (min-width:$notebook-from){
-			@content;
-		}
-	}
-	@if($device == "notebook-desktop"){
-		@media screen and (min-width:$notebook-from) and (max-width:$desktop-to){
-			@content;
-		}
-	}
-	@if($device == "notebook"){
-		@media screen and (min-width:$notebook-from) and (max-width:$notebook-to){
-			@content;
-		}
-	}
-
-	// for tablet and from tablet
-	@if($device == "tablet-hires"){
-		@media screen and (min-width:$tablet-from){
-			@content;
-		}
-	}
-	@if($device == "tablet-desktop"){
-		@media screen and (min-width:$tablet-from) and (max-width:$desktop-to){
-			@content;
-		}
-	}
-	@if($device == "tablet-notebook"){
-		@media screen and (min-width:$tablet-from) and (max-width:$notebook-to){
-			@content;
-		}
-	}
-	@if($device == "tablet"){
-		@media screen and (min-width:$tablet-from) and (max-width:$tablet-to){
-			@content;
-		}
-	}
-
-	// for phablet and from phablet
-	@if($device == "phablet-hires"){
-		@media screen and (min-width:$phablet-from){
-			@content;
-		}
-	}
-	@if($device == "phablet-desktop"){
-		@media screen and (min-width:$phablet-from) and (max-width:$desktop-to){
-			@content;
-		}
-	}
-	@if($device == "phablet-notebook"){
-		@media screen and (min-width:$phablet-from) and (max-width:$notebook-to){
-			@content;
-		}
-	}
-	@if($device == "phablet-tablet"){
-		@media screen and (min-width:$phablet-from) and (max-width:$tablet-to){
-			@content;
-		}
-	}
-	@if($device == "phablet"){
-		@media screen and (min-width:$phablet-from) and (max-width:$phablet-to){
-			@content;
-		}
-	}
-
-	// for smartphone and from smartphone
-	@if($device == "smartphone-hires"){
-		@media screen and (min-width:$smartphone-from){
-			@content;
-		}
-	}
-	@if($device == "smartphone-desktop"){
-		@media screen and (min-width:$smartphone-from) and (max-width:$desktop-to){
-			@content;
-		}
-	}
-	@if($device == "smartphone-notebook"){
-		@media screen and (min-width:$smartphone-from) and (max-width:$notebook-to){
-			@content;
-		}
-	}
-	@if($device == "smartphone-tablet"){
-		@media screen and (min-width:$smartphone-from) and (max-width:$tablet-to){
-			@content;
-		}
-	}
-	@if($device == "smartphone-phablet"){
-		@media screen and (min-width:$smartphone-from) and (max-width:$phablet-to){
-			@content;
-		}
-	}
-	@if($device == "smartphone"){
-		@media screen and (min-width:$smartphone-from) and (max-width:$smartphone-to){
-			@content;
-		}
-	}
-
-	// for phone and from phone
-	@if($device == "phone-hires"){
-		@content;
-	}
-	@if($device == "phone-desktop"){
-		@media screen and (max-width:$desktop-to){
-			@content;
-		}
-	}
-	@if($device == "phone-notebook"){
-		@media screen and (max-width:$notebook-to){
-			@content;
-		}
-	}
-	@if($device == "phone-tablet"){
-		@media screen and (max-width:$tablet-to){
-			@content;
-		}
-	}
-	@if($device == "phone-phablet"){
-		@media screen and (max-width:$phablet-to){
-			@content;
-		}
-	}
-	@if($device == "phone-smartphone"){
-		@media screen and (max-width:$smartphone-to){
-			@content;
-		}
-	}
-	@if($device == "phone"){
-		@media screen and (max-width:$phone-to){
-			@content;
-		}
-	}
-
-	// custom
-	@if($device == "custom"){
-		@if($min != false && $max != false){
-			@media screen and (min-width:$min) and (max-width:$max){
-				@content;
-			}
-		}@else if($min != false){
-			@media screen and (min-width:$min){
-				@content;
-			}
-		}@else if($max != false){
-			@media screen and (max-width:$max){
-				@content;
-			}
 		}
 	}
 }
