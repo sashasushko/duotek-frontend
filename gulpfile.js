@@ -1,9 +1,5 @@
 'use strict';
 
-// ToDo:
-// - Migrate to PostCSS with CSSnext
-// - Deploy
-
 // Plugins
 var gulp = require('gulp');
 var sass = require('gulp-sass');
@@ -18,11 +14,11 @@ var merge = require('merge-stream');
 // Build Styles
 var processors = [
 	autoprefixer({
-		browsers: ['last 3 version', 'IE >= 9']
+		browsers: ['last 2 version', 'IE >= 9']
 	})
 ];
 
-gulp.task('styles', function () {
+gulp.task('css', function () {
   return gulp.src( './staticcontent/css/src/*.scss' )
     .pipe( sourcemaps.init() )
 	.pipe( sass({ outputStyle: 'expanded'} ).on( 'error', sass.logError) )
@@ -34,10 +30,9 @@ gulp.task('styles', function () {
 
 // Build JS
 var jsPath = [
-	'./js/lib/jquery-2.2.3.js',
-	'./js/src/checkJS.js',
-	'./js/src/checkTouch.js',
-	'./js/src/site.js'
+	'./staticcontent/js/src/blc/checkJS.js',
+	'./staticcontent/js/src/blc/checkTouch.js',
+	'./staticcontent/js/src/blc/site.js'
 ];
 
 gulp.task('js', function () {
@@ -45,7 +40,7 @@ gulp.task('js', function () {
 		.pipe( sourcemaps.init() )
 		.pipe( concat('scripts.js') )
 		.pipe( sourcemaps.write() )
-		.pipe( gulp.dest('./js') );
+		.pipe( gulp.dest('./staticcontent/js') );
 });
 
 // Build sprites
