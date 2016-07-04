@@ -7,11 +7,4 @@
 @import "mxn/list-no-style";
 
 @import "lib/normalize";
-
-body {
-	background-color: #fff;
-
-	@include media($phone) {
-		background-color: #000;
-	}
-}
+@import "lib/sprites";

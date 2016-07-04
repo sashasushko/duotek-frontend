@@ -64,5 +64,5 @@ gulp.task('sprites', function () {
 // Watcher
 gulp.task('watch', function() {
     gulp.watch( './js/**/*.js', ['js'] );
-    gulp.watch( './staticcontent/css/src/**/*.scss', ['styles'] );
+    gulp.watch( './staticcontent/css/src/**/*.scss', ['css'] );
 });
