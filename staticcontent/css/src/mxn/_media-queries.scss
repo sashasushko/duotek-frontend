@@ -1,23 +1,46 @@
-$phone: 0px, 480px;
-$smartphone: 481px, 640px;
-$phablet: 641px, 768px;
-$tablet: 769px, 1024px;
-$notebook: 1025px, 1280px;
-$desktop: 1281px, 1600px;
-$hires: 1601px, false;
+$breakpoints-names: (
+	phone
+	smartphone
+	phablet
+	tablet
+	notebook
+	desktop
+	hires
+);
+
+$breakpoints-borders: (
+	(0px, 480px),
+	(481px, 640px),
+	(641px, 768px),
+	(769px, 1024px),
+	(1025px, 1280px),
+	(1281px, 1600px),
+	(1601px, false)
+);
+
+@function get-breakpoints-borders($name) {
+	$borders-id: index($breakpoints-names, $name);
+	$borders-list: nth($breakpoints-borders, $borders-id);
+	@return $borders-list;
+}
 
 @mixin media($value-1, $value-2:"undefined") {
 	$query: false;
 
 	@if $value-2 == "undefined" {
-		$query: "(min-width:#{nth($value-1, 1)}) and (max-width:#{nth($value-1, 2)})";
+		$breakpoints: get-breakpoints-borders($value-1);
+		$query: "(min-width:#{nth($breakpoints, 1)}) and (max-width:#{nth($breakpoints, 2)})";
 	} @else {
 		@if ($value-1) and ($value-2) {
-			$query: "(min-width:#{nth($value-1, 1)}) and (max-width:#{nth($value-2, 2)})";
+			$breakpoint-1: get-breakpoints-borders($value-1);
+			$breakpoint-2: get-breakpoints-borders($value-2);
+			$query: "(min-width:#{nth($breakpoint-1, 1)}) and (max-width:#{nth($breakpoint-2, 2)})";
 		} @else if ($value-1) {
-			$query: "(min-width:#{nth($value-1, 1)})";
+			$breakpoints: get-breakpoints-borders($value-1);
+			$query: "(min-width:#{nth($breakpoints, 1)})";
 		} @else if ($value-2) {
-			$query: "(max-width:#{nth($value-2, 2)})";
+			$breakpoints: get-breakpoints-borders($value-2);
+			$query: "(max-width:#{nth($breakpoints, 2)})";
 		}
 	}
 

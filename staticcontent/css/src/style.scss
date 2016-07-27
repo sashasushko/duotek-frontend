@@ -8,3 +8,10 @@
 
 @import "lib/normalize";
 @import "lib/sprites";
+
+
+body {
+	@include media('phone') {
+		background-color: #fcc;
+	}
+}
