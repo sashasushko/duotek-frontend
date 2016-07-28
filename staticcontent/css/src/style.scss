@@ -4,14 +4,5 @@
 @import "mxn/links";
 @import "mxn/retina";
 @import "mxn/media-queries";
-@import "mxn/list-no-style";
-
 @import "lib/normalize";
 @import "lib/sprites";
-
-
-body {
-	@include media('phone') {
-		background-color: #fcc;
-	}
-}

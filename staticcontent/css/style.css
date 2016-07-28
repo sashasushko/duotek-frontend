@@ -472,7 +472,7 @@ The `retina-sprites` mixin generates a CSS rule and media query for retina group
 
 @include retina-sprites($retina-groups);
 */
-@media screen and (min-width: 0px) and (max-width: 480px) {
+@media screen and (min-width: 0px) and (max-width: 1920px) {
   body {
     background-color: #fcc;
   }

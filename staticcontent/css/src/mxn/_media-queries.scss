@@ -15,7 +15,7 @@ $breakpoints-borders: (
 	(769px, 1024px),
 	(1025px, 1280px),
 	(1281px, 1600px),
-	(1601px, false)
+	(1601px, 1920px)
 );
 
 @function get-breakpoints-borders($name) {
