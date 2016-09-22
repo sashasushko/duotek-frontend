@@ -33,3 +33,9 @@ gulp.task('css', () => {
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./staticcontent/css'));
 });
+
+gulp.task('watch', () => {
+	gulp.watch('./staticcontent/css/source/**/*.css', ['css']);
+});
+
+gulp.task('default', ['css', 'watch']);
