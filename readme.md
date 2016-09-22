@@ -1,6 +1,6 @@
-## Duotek Frontend Template
+# Duotek Frontend Template
 
-### ToDo
+## ToDo
 
 - [x] Переход на [PostCSS](http://postcss.org/)
 	- [x] [cssnext](http://cssnext.io/)
@@ -19,13 +19,13 @@
 - [ ] Описание темлейта
 
 
-### Описание
+## Описание
 
-##### Сборка
+#### Сборка
 
-##### Файловая структура
+#### Файловая структура
 
-### Спасибо за помощь
+## Спасибо за помощь
 
 - [Using PostCSS and cssnext](http://fuzzytolerance.info/blog/2015/06/09/using-postcss-and-cssnext/)
 - [PostCSS быстрый старт](https://habrahabr.ru/post/271739/)
