@@ -24,3 +24,12 @@
 ##### Сборка
 
 ##### Файловая структура
+
+### Спасибо за помощь
+
+- [Using PostCSS and cssnext](http://fuzzytolerance.info/blog/2015/06/09/using-postcss-and-cssnext/)
+- [PostCSS быстрый старт](https://habrahabr.ru/post/271739/)
+- [Stylus → PostCSS](http://vasily.polovnyov.ru/posts/from-stylus-to-postcss.html)
+- [INTRODUCTION TO POSTCSS WITH GULP](http://slicejack.com/introduction-to-postcss/)
+- [ПОЛНОЕ ПОГРУЖЕНИЕ: 10 ПЛАГИНОВ POSTCSS](https://inostudio.com/ru/article/10-plugins-postcss.html)
+- [Gulp This](https://laracasts.com/lessons/gulp-this)
