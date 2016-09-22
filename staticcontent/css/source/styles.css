@@ -1,0 +1,5 @@
+body {
+	margin: 0 100px;
+	width: calc(100%-200px);
+	font-size: calc(0.5em * 1);
+}

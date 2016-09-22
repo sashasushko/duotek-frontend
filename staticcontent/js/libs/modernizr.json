@@ -1,0 +1,21 @@
+{
+  "minify": false,
+  "options": [
+    "setClasses"
+  ],
+  "feature-detects": [
+    "test/pointerevents",
+    "test/svg",
+    "test/css/animations",
+    "test/css/appearance",
+    "test/css/filters",
+    "test/css/flexbox",
+    "test/css/flexboxlegacy",
+    "test/css/objectfit",
+    "test/css/positionsticky",
+    "test/elem/picture",
+    "test/img/sizes",
+    "test/img/srcset",
+    "test/svg/inline"
+  ]
+}
