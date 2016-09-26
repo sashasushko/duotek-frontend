@@ -19,7 +19,16 @@ gulp.task('css', () => {
 			'last 2 Samsung versions',
 			'last 2 UCAndroid version'
 		],
-		features = [],
+		features = {
+			customSelectors: false,
+			colorFunction: false,
+			colorHwb: false,
+			colorGray: false,
+			colorHexAlpha: false,
+			colorRebeccapurple: false,
+			pseudoClassAnyLink: false,
+			attributeCaseInsensitive: false,
+		},
 		processors = [
 			cssimport,
 			cssnext({

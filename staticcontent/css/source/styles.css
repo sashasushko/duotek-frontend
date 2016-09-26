@@ -3,3 +3,13 @@ body {
 	width: calc(100%-200px);
 	font-size: calc(0.5em * 1);
 }
+
+@custom-selector :--button button, .button;
+@custom-selector :--enter :hover, :focus;
+
+:--button {
+  margin: 0;
+}
+:--button:--enter {
+  margin: 5px;
+}
