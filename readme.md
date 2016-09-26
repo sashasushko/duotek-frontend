@@ -1,4 +1,4 @@
-# Duotek Frontend Template
+# Duotek Frontend Template v0.2.1
 
 ## ToDo
 
