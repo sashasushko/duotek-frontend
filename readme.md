@@ -7,29 +7,35 @@
 - [ ] [cssnext с ограничениями по функционалу](http://cssnext.io/usage/#features)
 - [x] [сборка из @import](https://github.com/postcss/postcss-import)
 - [x] [Autoprefixer](https://github.com/postcss/autoprefixer)
-- [ ] Упаковщик медиавыражений или оптимизатор CSS (?)
-- [ ] Сборщик скриптов или модные штуки вроде RequireJS (?)
+- [x] [Модернайзер](https://modernizr.com/)
+- [x] Бабель
 - [ ] [Линтер стилей](http://stylelint.io/)
 - [ ] [Линтер скриптов](http://jshint.com/)
 - [ ] [Загрузка шрифтов](http://css-live.ru/articles/ischerpyvayushhee-rukovodstvo-po-strategiyam-zagruzki-veb-shriftov.html)
-- [ ] Вывод ошибок (?) [postcss-reporter](https://github.com/postcss/postcss-reporter) [postcss-browser-reporter](https://github.com/postcss/postcss-browser-reporter)
-- [x] [Модернайзер](https://modernizr.com/)
 - [ ] Спрайты
 	- [ ] PNG
 	- [ ] SVG
 	- [ ] Вотчер на добавление/изменение файлов
-- [ ] Файловая структура
+- [ ] Описание
+	- [ ] Сборка
+	- [ ] Файловая структура
 - [ ] HTML-шаблон
 - [ ] Библиотека компонентов
 - [ ] Валидация на клиенте
-- [ ] Описание темлейта
+- [ ] Упаковщик медиавыражений или оптимизатор CSS (?)
+- [ ] Сборщик скриптов или модные штуки вроде RequireJS (?)
+- [ ] [Вывод](https://github.com/postcss/postcss-reporter) [ошибок](https://github.com/postcss/postcss-browser-reporter) (?)
 
 
 ## Описание
 
 #### Сборка
 
+Скоро...
+
 #### Файловая структура
+
+Скоро...
 
 ## Спасибо за помощь
 

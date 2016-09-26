@@ -5,6 +5,7 @@ let gulp = require('gulp'),
 	postcss = require('gulp-postcss'),
 	cssimport = require('postcss-import'),
 	cssnext = require('postcss-cssnext'),
+	babel = require('gulp-babel'),
 	concat = require('gulp-concat');
 
 gulp.task('css', () => {
@@ -35,8 +36,11 @@ gulp.task('css', () => {
 });
 
 gulp.task('js', () => {
-	return gulp.src(['./staticcontent/js/libs/*.js', './staticcontent/js/source/*.js'])
+	return gulp.src('./staticcontent/js/source/*.js')
 		.pipe(sourcemaps.init())
+		.pipe(babel({
+			presets: ['es2015']
+		}))
 		.pipe(concat('scripts.js'))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./staticcontent/js'));
@@ -44,7 +48,7 @@ gulp.task('js', () => {
 
 gulp.task('watch', () => {
 	gulp.watch('./staticcontent/css/source/**/*.css', ['css']);
-	gulp.watch('./staticcontent/js/source/**/*.css', ['js']);
+	gulp.watch('./staticcontent/js/source/**/*.js', ['js']);
 });
 
 gulp.task('default', ['css', 'js', 'watch']);
