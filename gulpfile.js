@@ -45,10 +45,15 @@ gulp.task('css', () => {
 });
 
 gulp.task('js', () => {
-	return gulp.src('./staticcontent/js/source/*.js')
+	let paths = [
+			'./staticcontent/js/modernizr/modernizr.js',
+			'./staticcontent/js/source/*.js'
+		];
+
+	return gulp.src(paths)
 		.pipe(sourcemaps.init())
 		.pipe(babel({
-			presets: ['es2015']
+			presets: ['es2015', 'es2016']
 		}))
 		.pipe(concat('scripts.js'))
 		.pipe(sourcemaps.write())

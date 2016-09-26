@@ -4,7 +4,7 @@
 
 - [x] Переход на [PostCSS](http://postcss.org/)
 - [x] [cssnext](http://cssnext.io/)
-- [ ] [cssnext с ограничениями по функционалу](http://cssnext.io/usage/#features)
+- [x] [cssnext с ограничениями по функционалу](http://cssnext.io/usage/#features)
 - [x] [сборка из @import](https://github.com/postcss/postcss-import)
 - [x] [Autoprefixer](https://github.com/postcss/autoprefixer)
 - [x] [Модернайзер](https://modernizr.com/)
