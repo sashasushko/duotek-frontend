@@ -4,18 +4,18 @@
     "setClasses"
   ],
   "feature-detects": [
+    // "test/css/animations",
+    // "test/css/filters",
     "test/pointerevents",
     "test/svg",
-    "test/css/animations",
+    "test/svg/inline",
     "test/css/appearance",
-    "test/css/filters",
     "test/css/flexbox",
     "test/css/flexboxlegacy",
     "test/css/objectfit",
     "test/css/positionsticky",
     "test/elem/picture",
     "test/img/sizes",
-    "test/img/srcset",
-    "test/svg/inline"
+    "test/img/srcset"
   ]
 }
