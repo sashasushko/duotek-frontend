@@ -1,0 +1,21 @@
+{
+  "name": "duotek-frontend",
+  "version": "0.1.5",
+  "description": "Frontend template for a quick start.",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "There's no bathroom..."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sashasushko/duotek-frontend.git"
+  },
+  "author": "Sasha Sushko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sashasushko/duotek-frontend/issues"
+  },
+  "homepage": "https://github.com/sashasushko/duotek-frontend#readme"
+}
