@@ -62,7 +62,7 @@ gulp.task('sprite-png', () => {
 				imgName: 'sprite.png',
 				imgPath: '/staticcontent/img/sprite.png',
 				// styles
-				cssName: '_sprites.scss'
+				cssName: '_sprite.scss'
 			})
 		);
 	let imgStream = spriteData.img.pipe( gulp.dest('./staticcontent/img') );
@@ -73,7 +73,7 @@ gulp.task('sprite-png', () => {
 
 
 gulp.task('watch', () => {
-	gulp.watch('./staticcontent/css/source/**/*.css', ['css']);
+	gulp.watch('./staticcontent/css/source/**/*.scss', ['css']);
 	gulp.watch('./staticcontent/js/source/**/*.js', ['js']);
 });
 

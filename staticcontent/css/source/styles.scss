@@ -1,5 +1,5 @@
-/* styles.scss */
+@charset 'utf-8';
 
-.sin {
-	background: #fff;
-}
+@import 'mixins/sprite';
+@import 'global/global';
+@import 'mixins/sprite';
