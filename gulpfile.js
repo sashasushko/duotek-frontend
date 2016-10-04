@@ -77,4 +77,4 @@ gulp.task('watch', () => {
 	gulp.watch('./staticcontent/js/source/**/*.js', ['js']);
 });
 
-gulp.task('default', ['css', 'js', 'watch']);
+gulp.task('default', ['sprite-png', 'css', 'js', 'watch']);

@@ -2,3 +2,8 @@
 node_modules/
 jscore/
 *.sublime-*
+staticcontent/img/
+staticcontent/css/ie.css
+staticcontent/css/styles.css
+staticcontent/js/scripts.js
+.idea/
