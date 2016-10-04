@@ -1,6 +1,6 @@
 {
   "name": "duotek-frontend",
-  "version": "0.1.5",
+  "version": "1.0.1",
   "description": "Frontend template for a quick start.",
   "main": "gulpfile.js",
   "dependencies": {},
