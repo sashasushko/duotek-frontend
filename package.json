@@ -1,20 +1,35 @@
 {
-  "name": "gulp-duotek",
-  "version": "0.1.0",
-  "description": "Front-end tools | www.duotek.ru",
-  "scripts": {
-    "test": "echo \"Error: There is no bathroom...\" && exit 1"
-  },
-  "author": "Sasha Sushko | www.sushko.me",
-  "license": "ISC",
+  "name": "duotek-frontend",
+  "version": "0.1.5",
+  "description": "Frontend template for new project.",
+  "main": "gulpfile.js",
+  "dependencies": {},
   "devDependencies": {
-    "autoprefixer": "^6.3.6",
+    "autoprefixer": "^6.5.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-es2016": "^6.16.0",
+    "babel-preset-es2017": "^6.16.0",
     "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
-    "gulp-postcss": "^6.1.1",
+    "gulp-postcss": "^6.2.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp.spritesmith": "^6.2.1",
-    "merge-stream": "^1.0.0"
-  }
+    "merge-stream": "^1.0.0",
+    "modernizr": "^3.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: There is no bathroom...\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sashasushko/duotek-frontend.git"
+  },
+  "author": "Sasha Sushko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sashasushko/duotek-frontend/issues"
+  },
+  "homepage": "https://github.com/sashasushko/duotek-frontend#readme"
 }

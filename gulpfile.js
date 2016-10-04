@@ -1,68 +1,80 @@
 'use strict';
 
-// Plugins
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var postcss = require('gulp-postcss');
-var autoprefixer = require('autoprefixer');
-var sourcemaps = require('gulp-sourcemaps');
-var concat = require('gulp-concat');
-var spritesmith = require('gulp.spritesmith');
-var merge = require('merge-stream');
+let gulp = require('gulp'),
+	sourcemaps = require('gulp-sourcemaps'),
+	sass = require('gulp-sass'),
+	postcss = require('gulp-postcss'),
+	autoprefixer = require('autoprefixer'),
+	babel = require('gulp-babel'),
+	concat = require('gulp-concat'),
+	spritesmith = require('gulp.spritesmith'),
+	merge = require('merge-stream');
 
+gulp.task('css', () => {
+	let processors = [
+			autoprefixer({
+				browsers: [
+					'last 2 versions',
+					'Explorer >= 10',
+					'Android >= 4.4',
+					'last 2 ChromeAndroid versions',
+					'last 2 FirefoxAndroid versions',
+					'last 2 OperaMobile versions',
+					'last 2 Samsung versions',
+					'last 2 UCAndroid version'
+				]
+			})
+		];
 
-// Build Styles
-var processors = [
-	autoprefixer({
-		browsers: ['last 2 version', 'IE >= 9']
-	})
-];
-
-gulp.task('css', function () {
-  return gulp.src( './staticcontent/css/src/*.scss' )
-    .pipe( sourcemaps.init() )
-	.pipe( sass({ outputStyle: 'expanded'} ).on( 'error', sass.logError) )
-    .pipe( postcss(processors) )
-    .pipe( sourcemaps.write('.') )
-    .pipe( gulp.dest('./staticcontent/css') );
-});
-
-
-// Build JS
-var jsPath = [
-	'./staticcontent/js/src/blc/checkJS.js',
-	'./staticcontent/js/src/blc/checkTouch.js',
-	'./staticcontent/js/src/blc/site.js'
-];
-
-gulp.task('js', function () {
-	return gulp.src( jsPath )
+	return gulp.src(['./staticcontent/css/source/styles.scss', './staticcontent/css/source/ie.scss'])
 		.pipe( sourcemaps.init() )
-		.pipe( concat('scripts.js') )
+		.pipe( sass({outputStyle:'expanded'}).on('error', sass.logError) )
+		.pipe( postcss(processors) )
 		.pipe( sourcemaps.write() )
-		.pipe( gulp.dest('./staticcontent/js') );
+		.pipe( gulp.dest('./staticcontent/css') );
 });
 
-// Build sprites
-gulp.task('sprites', function () {
-	var spriteData = gulp.src( './staticcontent/img/sprite/*.png' )
+gulp.task('js', () => {
+	let paths = [
+			'./staticcontent/js/vendor/modernizr/modernizr.js',
+			'./staticcontent/js/source/*.js'
+		];
+
+	return gulp.src(paths)
+		.pipe(sourcemaps.init())
+		.pipe(concat('scripts.js'))
+		.pipe(babel({
+			presets: ['es2015', 'es2016', 'es2017']
+		}))
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest('./staticcontent/js'));
+});
+
+gulp.task('sprite-png', () => {
+	let spriteData = gulp.src( './staticcontent/img/sprite/*.png' )
 		.pipe(
 			spritesmith({
+				// retina
 				retinaSrcFilter: './staticcontent/img/sprite/*@2x.png',
-				imgName: 'sprite.png',
 				retinaImgName: 'sprite@2x.png',
-				cssName: '_sprites.scss',
+				retinaImgPath:'/staticcontent/img/sprite@2x.png',
+				// default
+				imgName: 'sprite.png',
 				imgPath: '/staticcontent/img/sprite.png',
-				retinaImgPath:'/staticcontent/img/sprite@2x.png'
+				// styles
+				cssName: '_sprites.scss'
 			})
 		);
-	var imgStream = spriteData.img.pipe( gulp.dest('./staticcontent/img') );
-	var cssStream = spriteData.css.pipe( gulp.dest('./staticcontent/css/src/lib') );
+	let imgStream = spriteData.img.pipe( gulp.dest('./staticcontent/img') );
+	let cssStream = spriteData.css.pipe( gulp.dest('./staticcontent/css/source/mixins') );
+
 	return merge( imgStream, cssStream );
 });
 
-// Watcher
-gulp.task('watch', function() {
-    gulp.watch( './staticcontent/js/src/**/*.js', ['js'] );
-    gulp.watch( './staticcontent/css/src/**/*.scss', ['css'] );
+
+gulp.task('watch', () => {
+	gulp.watch('./staticcontent/css/source/**/*.css', ['css']);
+	gulp.watch('./staticcontent/js/source/**/*.js', ['js']);
 });
+
+gulp.task('default', ['css', 'js', 'watch']);
