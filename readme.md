@@ -1,5 +1,5 @@
 # Duotek Frontend Template
-Фронтенд-шаблон для быстрого старта проекта
+Фронтенд-шаблон для быстрого старта проекта :rocket:
 
 ## Старт
 1. Скачай [последний релиз](//github.com/sashasushko/duotek-frontend/releases) и распакуй в папку проекта
@@ -22,13 +22,14 @@ gulp watch
 ```bash
 gulp css
 ```
-Собирает стили в один файл по импортам из `/staticcontent/css/source/styles.scss`.
+Собирает стили в один файл по _@import_ из `/staticcontent/css/source/styles.scss`.
 
 #### Сборка скриптов
 ```bash
 gulp js
 ```
 Собирает скрипты в один файл из папки `/staticcontent/js/source` и других папок, указанных в массиве `path` в `gulpfile.js`.
+
 Полученный файл обрабатывается Бабелем, для поддержки «старых» браузеров.
 
 #### Генерация PNG-спрайтов
@@ -36,188 +37,17 @@ gulp js
 gulp sprite-png
 ```
 Собирает спрайт из иконок, добавленных в папку `/staticcontent/img/sprite/png`.
+
 [Требования, ограничения и примеры использования спрайтов](#Использование-спрайтов).
 
 #### Генерация SVG-спрайтов _(скоро)_
 #### Подготовка к развёртыванию на боевом сервере _(скоро)_
 
-## Стиль кода
-### HTML и CSS по БЭМу
-[Наименование «Два дефиса»](https://ru.bem.info/methodology/naming-convention/#Стиль-two-dashes):
+## [Стиль кода](//github.com/sashasushko/duotek-frontend/blob/master/codestyle.md)
 
-`.block` — [блок](//ru.bem.info/methodology/key-concepts/#Блок)
+## [Файловая структура](//github.com/sashasushko/duotek-frontend/blob/master/filestructure.md)
 
-`.block__element` — [элемент](//ru.bem.info/methodology/key-concepts/#Элемент)
- 
-`.block__element--modifier` — [модификатор](//ru.bem.info/methodology/key-concepts/#Модификатор)
-
-Блоки называй по-английски, желательно одним словом. Можно брать из [списка часто используемых слов](//github.com/yoksel/common-words).
-
-Теги без классов стилизовать нельзя, за исключением `html`, `body` и тегов визивиг-редактора.
-
-### JavaScript _(скоро)_
-
-### Шрифты _(скоро)_
-
-### Линтеры _(скоро)_
-
-## Файловая структура
-```
-/jscore                             # Содержит движковые JS-библиотеки, например jQuery
-    jquery.min.js
-/staticcontent
-    /img                            # Изображения
-        /sprite
-            /svg                    # Иконки для SVG-спрайта
-                ...
-            /png                    # Иконки для PNG-спрайта
-                ...                 
-        sprite.png                  # PNG-спрайт (генерируется автоматически)
-        sprite@2x.png               # PNG-спрайт для ретины (генерируется автоматически)
-        sprite.svg                  # SVG-спрайт (генерируется автоматически)
-        ...
-    /fonts                          # Шрифты. По умолчанию в woff
-        ...
-    /vendor                         # Сторонние JS- и CSS-библиотеки. Каждая в своей папке
-        /modernizr                  # Модернайзер
-            modernizr.json          # Список отслеживаемых возможностей
-            modernizr.js
-        /normalize                  # Нормалайз
-            normalize.css
-        ...
-    /css
-        /source
-            /mixins                 # Примеси. Каждая в своём файле
-                _media.scss         # Медиа выражения
-                _clearfix.scss      # Сброс для плавающих элементов
-                ...
-            /base                   # Основные составляющие (конечный список)
-                _variables.scss     # Переменные
-                _fonts.scss         # @font-face для нестандартных шрифтов
-                _global.scss        # Стили для html, body
-                _typo.scss          # Типографика, стили для WYSIWYG
-                _helpers.scss       # Вспомогательных стили                
-            /layout                 # Стили раскладки (конечный список)
-                _grid.scss          # Сетки
-                _header.scss        # Шапка сайта
-                _content.scss       # Содержание сайта
-                _footer.scss        # Подвал сайта
-            /pages                  # Стили для страниц (опциональны)
-                ...
-            /blocks                 # Блоки по БЭМу. Каждый в своём файле
-                ...
-            styles.scss             # Список импортов для сборки
-        all.css                     # Собранные стили (генерируется автоматически)
-    /js
-        /source                     # Папка с JS-компонентами. Каждый в своём файле
-            ...
-    all.js                          # Собранные скрипты (генерируется автоматически)
-gulpfile.js                         # Задачи для сборщика
-package.json                        # Информация о проекте
-```
-
-## Использование PNG-спрайтов
-
-### Иконки
-Спрайт собирается автоматически из иконок в папке `/staticcontent/img/sprite/png`.
-
-Иконки должны быть с чётными высотой и шириной, названы по-английски, желательно одним словом. Дефис допустим. Их название после станет переменной для примеси.
-
-Для ретины иконки должны быть в два раза больше обычной, а в конце названия иметь приписку `@2x`. Сами названия у обычной иконки и для ретины должны совпадать.
-Например, обычная `menu.png` 16 на 16 px и для ретины `menu@2x.png` 32 на 32 px.
-
-### Примеси
-Утилита **[spritesmith](/twolfson/gulp.spritesmith/)** автоматически генерирует примеси.
-
-`sprite-width($icon-name)` — ширина иконки
-
-`sprite-height($icon-name)` — высота иконки
-
-`sprite-position($icon-name)` — положение иконки в спрайте
-
-`sprite-image($icon-name)` — путь к спрайту
-
-`sprite($icon-name)` — четыре предыдущих свойства сразу
-
-`sprite-background-size($icon-name)` — ширина и высота спрайта
-
-Все примеси возвращают результат как _ключ: значение_. Например:
-```scss
-.icon--menu {
-    @include sprite-width($menu);
-}
-```
-Скомпилируется в:
-```css
-.icon--menu {
-    width: 16px;
-}
-```
-
-### Стандартное использование 
-
-Примесь для не ретина иконок `sprite($icon)` мы не используем.
-
-Только `retinaSprite($icon_group)`, где `$icon` — название png-иконки, а `_group` — служебная приписка.
-
-Например, для иконки `menu.png` код будет следующий:
-```scss
-.icon--menu {
-    @include retina-sprite($menu_group);
-}
-```
-В скомпилированном CSS мы получим:
-```css
-.icon--menu {
-    width: 16px;
-    height: 16px;
-    background-image: url('/staticcontent/img/sprite.png');
-    background-position: 0 0;
-}
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .icon--menu {
-        background-image: url('/staticcontent/img/sprite@2x.png');
-        background-size: 16px 16px;
-    }
-}
-```
-
-### Эффекты при наведении
-Чтобы сменить при наведении иконку на другое её состояние, достаточно указать позицию состояния:
-```scss
-.icon--menu {
-    @include retina-sprite($menu_group);
-
-    &:hover {
-        @include sprite-position($menu-hover);
-    }
-}
-```
-А вот другое состояние иконки `menu-hover.png` придётся рисовать отдельно.
-
-В случае, если сменить нужно на другую иконку со своими высотой и шириной, придётся прописать новую примесь: `@include retina-sprite($cross_group);`
-
-### Нестандартное использование
-
-Бывают случаи, когда необходимо получить параметры иконки не как _ключ: значение_, а просто _значение_. Тогда можно обратиться напрямую к массиву параметров иконки, записанному в переменную `$icon-name`.
-
-Например, нам необходимо отцентровать иконку, а современные способы вроде translate или flexbox не поддерживаются:
-```scss
-.icon--menu {
-    // Примесь вставит: width, height, background-image, background-position и @media для ретины
-    @include retina-sprite($menu_group);
-
-    // Центруем
-    // Смещаем вниз на 50% и возвращаем вверх на половину собственной ширины
-    top: 50%;
-    margin-top: ($menu-height / 2) * (-1);
-    // Тоже самое по горизонтали
-    left: 50%;
-    margin-left: ($menu-width / 2) * (-1);
-}
-```
-
+## [Использование PNG-спрайтов](//github.com/sashasushko/duotek-frontend/blob/master/sprites.md)
 
 ## TO-DO
 - Дописать всё, что "скоро"
