@@ -9,8 +9,9 @@
 ```
 gulp
 ```
+Единоразово собирает стили, скрипты и спрайт, а после запускает `gulp watch`.
 
-## [Отдельные GULP-задачи](//github.com/sashasushko/duotek-frontend/blob/master/gulptasks.md)
+## [GULP-задачи](//github.com/sashasushko/duotek-frontend/blob/master/gulptasks.md)
 
 ## [Стиль кода](//github.com/sashasushko/duotek-frontend/blob/master/codestyle.md)
 
