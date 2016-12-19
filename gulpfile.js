@@ -1,10 +1,14 @@
+'use strict';
+
 let gulp = require('gulp');
 let sourcemaps = require('gulp-sourcemaps');
+let postcss = require('gulp-postcss');
+let rename = require("gulp-rename");
 
 gulp.task('css', () => {
     let sass = require('gulp-sass');
-    let postcss = require('gulp-postcss');
     let autoprefixer = require('autoprefixer');
+    let discardComments = require('postcss-discard-comments');
     let browsers = [
         'last 2 versions',
         'Explorer >= 10',
@@ -18,19 +22,39 @@ gulp.task('css', () => {
     let processors = [
         autoprefixer({
             browsers: browsers
-        })
+        }),
+        discardComments
     ];
 
     return gulp.src( './staticcontent/css/source/styles.scss' )
         .pipe( sourcemaps.init() )
-        .pipe( sass({ outputStyle: 'expanded'} ).on( 'error', sass.logError) )
+        .pipe( sass({ outputStyle: 'expanded' }).on( 'error', sass.logError) )
         .pipe( postcss(processors) )
         .pipe( sourcemaps.write() )
+        .pipe( rename({ basename: 'all' }) )
+        .pipe( gulp.dest('./staticcontent/css') );
+});
+
+gulp.task('deploy-css', () => {
+    let cssnano = require('cssnano');
+    let processors = [
+		cssnano({
+			autoprefixer: false,
+            reduceIdents: false,
+			svgo: false,
+			zindex: false
+		})
+    ];
+
+    return gulp.src( './staticcontent/css/all.css' )
+        .pipe( postcss(processors) )
         .pipe( gulp.dest('./staticcontent/css') );
 });
 
 gulp.task('js', () => {
     let scripts = require('./staticcontent/js/source/scripts.js');
+    let babel = require('gulp-babel');
+    let concat = require('gulp-concat');
 
     return gulp.src(scripts.path)
 	    .pipe(sourcemaps.init())
@@ -38,17 +62,27 @@ gulp.task('js', () => {
             presets: ['es2015']
         }))
 	    .pipe(concat('all.js'))
-        .pipe(sourcemaps.write('.'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./staticcontent/js'));
 });
 
+gulp.task('deploy-js', () => {
+    let uglify = require('gulp-uglify');
+
+    return gulp.src( './staticcontent/js/all.js' )
+        .pipe( uglify() )
+        .pipe( gulp.dest('./staticcontent/js') );
+});
+
 gulp.task('sprite-png', () => {
-    let spriteData = gulp.src( './staticcontent/img/sprite/*.png' )
+    let spritesmith = require('gulp.spritesmith');
+    let merge = require('merge-stream');
+    let spriteData = gulp.src( './staticcontent/img/sprite/png/*.png' )
         .pipe(spritesmith({
             cssName: '_sprite.scss',
             imgName: 'sprite.png',
             imgPath: '/staticcontent/img/sprite.png',
-            retinaSrcFilter: './staticcontent/img/sprite/*@2x.png',
+            retinaSrcFilter: './staticcontent/img/sprite/png/*@2x.png',
             retinaImgName: 'sprite@2x.png',
             retinaImgPath:'/staticcontent/img/sprite@2x.png'
         }));
@@ -60,11 +94,11 @@ gulp.task('sprite-png', () => {
 });
 
 gulp.task('watch', () => {
-	gulp.watch('./staticcontent/css/source/**/*.css', ['css']);
+	gulp.watch('./staticcontent/css/source/**/*.scss', ['css']);
 	gulp.watch('./staticcontent/js/source/**/*.js', ['js']);
 	gulp.watch('./staticcontent/img/sprite/*.png', ['sprite-png']);
 });
 
-gulp.task('deploy', () => {});
-
 gulp.task('default', ['css', 'js', 'sprite-png', 'watch']);
+
+gulp.task('deploy', ['deploy-css', 'deploy-js']);
