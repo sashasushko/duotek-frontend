@@ -43,12 +43,12 @@
 
 Примесь для не ретина иконок `sprite($icon)` мы не используем.
 
-Только `retinaSprite($icon_group)`, где `$icon` — название png-иконки, а `_group` — служебная приписка.
+Только `retinaSprite($icon-group)`, где `$icon` — название png-иконки, а `-group` — служебная приписка.
 
 Например, для иконки `menu.png` код будет следующий:
 ```scss
 .icon--menu {
-    @include retina-sprite($menu_group);
+    @include retina-sprite($menu-group);
 }
 ```
 В скомпилированном CSS мы получим:
@@ -72,7 +72,7 @@
 Чтобы сменить при наведении иконку на другое её состояние, достаточно указать позицию состояния:
 ```scss
 .icon--menu {
-    @include retina-sprite($menu_group);
+    @include retina-sprite($menu-group);
 
     &:hover {
         @include sprite-position($menu-hover);
@@ -81,7 +81,7 @@
 ```
 А вот другое состояние иконки `menu-hover.png` и `menu-hover@2x.png` придётся рисовать отдельно.
 
-В случае, если сменить нужно на другую иконку со своими высотой и шириной, придётся прописать новую примесь: `@include retina-sprite($cross_group);`
+В случае, если сменить нужно на другую иконку со своими высотой и шириной, придётся прописать новую примесь: `@include retina-sprite($cross-group);`
 
 ### Нестандартное использование
 
@@ -91,7 +91,7 @@
 ```scss
 .icon--menu {
     // Примесь вставит: width, height, background-image, background-position и @media для ретины
-    @include retina-sprite($menu_group);
+    @include retina-sprite($menu-group);
 
     // Центруем
     // Смещаем вниз на 50% и возвращаем вверх на половину собственной ширины

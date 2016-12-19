@@ -3,7 +3,7 @@
 
 ## Старт
 1. Скачай [последний релиз](//github.com/sashasushko/duotek-frontend/releases) и распакуй в папку проекта
-2. Установи модули командой `npm i`
+2. Установи зависимости командой `npm i`
 
 ## Запуск
 ```
@@ -11,7 +11,7 @@ gulp
 ```
 Единоразово собирает стили, скрипты и спрайт, а после запускает `gulp watch`.
 
-## [GULP-задачи](//github.com/sashasushko/duotek-frontend/blob/master/gulptasks.md)
+## [Все GULP-задачи](//github.com/sashasushko/duotek-frontend/blob/master/gulptasks.md)
 
 ## [Стиль кода](//github.com/sashasushko/duotek-frontend/blob/master/codestyle.md)
 
@@ -19,7 +19,7 @@ gulp
 
 ## [Использование PNG-спрайтов](//github.com/sashasushko/duotek-frontend/blob/master/sprites.md)
 
-## TO-DO
+## ToDo:
 - Интегрировать БЭМ-компоненты и DLL
 - Поддержка старых браузеров на примере
 - Обновление Нормалайза задачей в Галпе :question:
