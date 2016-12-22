@@ -20,6 +20,7 @@ gulp
 ## [Использование PNG-спрайтов](//github.com/sashasushko/duotek-frontend/blob/master/sprites.md)
 
 ## ToDo:
+- Стартовый чеклист
 - Интегрировать БЭМ-компоненты и DLL
 - Поддержка старых браузеров на примере
 - Обновление Нормалайза задачей в Галпе :question:
