@@ -1,5 +1,5 @@
 # Duotek Frontend Template
-Фронтенд-шаблон для быстрого старта проекта :rocket:
+Шаблон для быстрого старта проекта :rocket:
 
 ## Старт
 1. Скачай [последний релиз](//github.com/sashasushko/duotek-frontend/releases) и распакуй в папку проекта
