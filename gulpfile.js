@@ -3,43 +3,68 @@
 
 let gulp = require('gulp');
 let sourcemaps = require('gulp-sourcemaps');
+let sass = require('gulp-sass');
+let autoprefixer = require('autoprefixer');
 let postcss = require('gulp-postcss');
+let cssnano = require('cssnano');
 let rename = require("gulp-rename");
+let babel = require('gulp-babel');
+let concat = require('gulp-concat');
+let spritesmith = require('gulp.spritesmith');
+let merge = require('merge-stream');
+let uglify = require('gulp-uglify');
+let path = {
+	css: {
+		source: './staticcontent/source/scss/styles.scss',
+		dest: './staticcontent/css',
+		deploy: {
+			source: './staticcontent/css/all.css',
+			dest: './staticcontent/css',
+		},
+		watch: 'staticcontent/source/scss/**/*.scss'
+	},
+	js: {
+		source: [
+			'./staticcontent/source/js/components/isJS.js'
+		],
+		dest: './staticcontent/js',
+		deploy: {
+			source: './staticcontent/js/all.js',
+			dest: './staticcontent/js',
+		},
+		watch: 'staticcontent/source/js/**/*.js'
+	},
+	sprite: {
+		png: {
+			source: {
+				x1: './staticcontent/source/img/sprite/png/*.png',
+				x2: './staticcontent/source/img/sprite/png/*@2x.png'
+			},
+			dest: {
+				img: './staticcontent/img',
+				css: './staticcontent/source/scss/helpers'
+			}
+		}
+	}
+}
 
 
 gulp.task('css', () => {
-	let sass = require('gulp-sass');
-	let autoprefixer = require('autoprefixer');
-	let discardComments = require('postcss-discard-comments');
-	let browsers = [
-		'last 2 versions',
-		'Explorer >= 10',
-		'Android >= 4.4',
-		'last 2 ChromeAndroid versions',
-		'last 2 FirefoxAndroid versions',
-		'last 2 OperaMobile versions',
-		'last 2 Samsung versions',
-		'last 2 UCAndroid version'
-	];
 	let processors = [
-		autoprefixer({
-			browsers: browsers
-		}),
-		discardComments
+		autoprefixer()
 	];
 
-	return gulp.src( './staticcontent/source/scss/styles.scss' )
+	return gulp.src( path.css.source )
 		.pipe( sourcemaps.init() )
 		.pipe( sass({ outputStyle: 'expanded' }).on( 'error', sass.logError) )
 		.pipe( postcss(processors) )
 		.pipe( sourcemaps.write() )
 		.pipe( rename({ basename: 'all' }) )
-		.pipe( gulp.dest('./staticcontent/css') );
+		.pipe( gulp.dest( path.css.dest ) );
 });
 
 
 gulp.task('deploy-css', () => {
-	let cssnano = require('cssnano');
 	let processors = [
 		cssnano({
 			autoprefixer: false,
@@ -52,60 +77,52 @@ gulp.task('deploy-css', () => {
 		})
 	];
 
-	return gulp.src( './staticcontent/css/all.css' )
+	return gulp.src( path.css.deploy.source )
 		.pipe( postcss(processors) )
-		.pipe( gulp.dest('./staticcontent/css') );
+		.pipe( gulp.dest( path.css.deploy.dest ) );
 });
 
 
 gulp.task('js', () => {
-	let scripts = require('./staticcontent/source/js/scripts.js');
-	let babel = require('gulp-babel');
-	let concat = require('gulp-concat');
-
-	return gulp.src(scripts.path)
-		.pipe(sourcemaps.init())
-		.pipe(babel({
+	return gulp.src( path.js.source )
+		.pipe( sourcemaps.init() )
+		.pipe( babel({
 			presets: ['es2015']
-		}))
-		.pipe(concat('all.js'))
-		.pipe(sourcemaps.write())
-		.pipe(gulp.dest('./staticcontent/js'));
+		}) )
+		.pipe( concat( 'all.js' ) )
+		.pipe( sourcemaps.write() )
+		.pipe( gulp.dest( path.js.dest ) );
 });
 
 
 gulp.task('deploy-js', () => {
-	let uglify = require('gulp-uglify');
-
-	return gulp.src( './staticcontent/js/all.js' )
+	return gulp.src( path.js.deploy.source )
 		.pipe( uglify() )
-		.pipe( gulp.dest('./staticcontent/js') );
+		.pipe( gulp.dest( path.js.deploy.dest ) );
 });
 
 
 gulp.task('sprite-png', () => {
-	let spritesmith = require('gulp.spritesmith');
-	let merge = require('merge-stream');
-	let spriteData = gulp.src( './staticcontent/source/img/sprite/png/*.png' )
+	let spriteData = gulp.src( path.sprite.png.source.x1 )
 		.pipe(spritesmith({
 			cssName: '_sprite.scss',
 			imgName: 'sprite.png',
 			imgPath: '/staticcontent/img/sprite.png',
-			retinaSrcFilter: './staticcontent/source/img/sprite/png/*@2x.png',
+			retinaSrcFilter: path.sprite.png.source.x2,
 			retinaImgName: 'sprite@2x.png',
 			retinaImgPath:'/staticcontent/img/sprite@2x.png'
 		}));
 
-	let imgStream = spriteData.img.pipe( gulp.dest('./staticcontent/img') );
-	let cssStream = spriteData.css.pipe( gulp.dest('./staticcontent/source/scss/helpers') );
+	let imgStream = spriteData.img.pipe( gulp.dest( path.sprite.png.dest.img ) );
+	let cssStream = spriteData.css.pipe( gulp.dest( path.sprite.png.dest.css ) );
 
 	return merge( imgStream, cssStream );
 });
 
 
 gulp.task('watch', () => {
-	gulp.watch('staticcontent/source/scss/**/*.scss', ['css']);
-	gulp.watch('staticcontent/source/js/**/*.js', ['js']);
+	gulp.watch( path.css.watch, ['css'] );
+	gulp.watch( path.js.watch, ['js'] );
 });
 
 
