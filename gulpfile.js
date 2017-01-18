@@ -106,7 +106,6 @@ gulp.task('sprite-png', () => {
 gulp.task('watch', () => {
 	gulp.watch('staticcontent/source/scss/**/*.scss', ['css']);
 	gulp.watch('staticcontent/source/js/**/*.js', ['js']);
-	gulp.watch('staticcontent/source/img/sprite/png/*.png', ['sprite-png']);
 });
 
 
