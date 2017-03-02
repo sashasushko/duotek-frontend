@@ -46,7 +46,7 @@ let path = {
 			}
 		}
 	}
-}
+};
 
 
 gulp.task('css', () => {
