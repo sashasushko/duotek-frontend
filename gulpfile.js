@@ -25,6 +25,7 @@ let path = {
 	},
 	js: {
 		source: [
+			'./staticcontent/source/js/components/classListPoly.js',
 			'./staticcontent/source/js/components/isJS.js',
 			'./staticcontent/source/js/app.js'
 		],
