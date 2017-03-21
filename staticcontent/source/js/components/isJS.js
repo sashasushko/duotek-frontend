@@ -1,3 +1,6 @@
 // Check JS support
-document.documentElement.classList.remove('no-js');
-document.documentElement.classList.add('js');
+(function() {
+	var html = document.documentElement;
+	html.classList.remove('no-js');
+	html.classList.add('js');
+})();
