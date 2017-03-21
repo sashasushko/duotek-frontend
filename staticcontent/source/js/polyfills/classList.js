@@ -3,7 +3,7 @@
  * @author Devon Govett
  */
 (function classListPolyfill(){
-	if ('classList' in document.documentElement && !Object.defineProperty && typeof HTMLElement === 'undefined') {
+	if (("classList" in document.documentElement) && (Object.defineProperty) && (typeof HTMLElement !== 'undefined')) {
 		return false;
 	}
 

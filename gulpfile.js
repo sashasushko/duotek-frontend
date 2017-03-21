@@ -1,6 +1,5 @@
 'use strict';
 
-
 let gulp = require('gulp');
 let sourcemaps = require('gulp-sourcemaps');
 let sass = require('gulp-sass');
@@ -89,10 +88,10 @@ gulp.task('deploy-css', () => {
 gulp.task('js', () => {
 	return gulp.src( path.js.source )
 		.pipe( sourcemaps.init() )
+		.pipe( concat( 'all.js' ) )
 		.pipe( babel({
 			presets: ['es2015']
 		}) )
-		.pipe( concat( 'all.js' ) )
 		.pipe( sourcemaps.write() )
 		.pipe( gulp.dest( path.js.dest ) );
 });
