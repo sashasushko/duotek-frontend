@@ -26,7 +26,8 @@ let path = {
 	js: {
 		source: [
 			'./staticcontent/source/js/polyfills/*.js',
-			'./staticcontent/source/js/components/isJS.js',
+			'./staticcontent/source/js/helpers/*.js',
+			'./staticcontent/source/js/components/*.js',
 			'./staticcontent/source/js/app.js'
 		],
 		dest: './staticcontent/js',
