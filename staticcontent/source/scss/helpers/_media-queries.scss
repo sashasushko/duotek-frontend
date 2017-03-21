@@ -1,0 +1,47 @@
+$breakpoints-names: (
+	xs
+	s
+	m
+	l
+	xl
+	xxl
+	xxxl
+);
+
+$breakpoints-borders: (
+	480px,
+	640px,
+	768px,
+	960px,
+	1180px,
+	1400px,
+	1920px
+);
+
+@function get-breakpoints-borders($name) {
+	$borders-id: index($breakpoints-names, $name);
+	$borders-list: nth($breakpoints-borders, $borders-id);
+	@return $borders-list;
+}
+
+@mixin media($value-1, $value-2: false) {
+	$query: false;
+	@if $value-2 == "custom" {
+		$query: "max-width: $value-1+px";
+	} @else if $value-2 == "from" {
+		$breakpoints: get-breakpoints-borders($value-1) + 1;
+		$query: "min-width:#{$breakpoints}";
+	} @else {
+		$breakpoints: get-breakpoints-borders($value-1);
+		$query: "max-width:#{$breakpoints}";
+	}
+	@if $value-2 == "from" {
+		@media screen and (#{$query}) {
+			@content;
+		}
+	} @else if ($query) {
+		@media screen and (min-width: 0px) and (#{$query}) {
+			@content;
+		}
+	}
+}
