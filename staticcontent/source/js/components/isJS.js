@@ -1,6 +1,9 @@
-// Check JS support
-(function() {
-	var html = document.documentElement;
-	html.classList.remove('no-js');
-	html.classList.add('js');
+/**
+ * Check JS support
+ * @returns {boolean}
+ */
+(function checkJSsupport() {
+	document.documentElement.classList.remove('no-js');
+	document.documentElement.classList.add('js');
+	return true;
 })();
