@@ -112,7 +112,8 @@ gulp.task('sprite-png', () => {
 			imgPath: '/staticcontent/img/sprite.png',
 			retinaSrcFilter: path.sprite.png.source.x2,
 			retinaImgName: 'sprite@2x.png',
-			retinaImgPath:'/staticcontent/img/sprite@2x.png'
+			retinaImgPath:'/staticcontent/img/sprite@2x.png',
+			padding: 8
 		}));
 
 	let imgStream = spriteData.img.pipe( gulp.dest( path.sprite.png.dest.img ) );
