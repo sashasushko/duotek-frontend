@@ -1,11 +1,12 @@
-/*
- * Minimal classList shim for IE 9
- * By Devon Govett
- * MIT LICENSE
+/**
+ * Полифил метода classList
+ * @author Devon Govett
  */
+(function classListPolyfill(){
+	if (("classList" in document.documentElement) && (Object.defineProperty) && (typeof HTMLElement !== 'undefined')) {
+		return false;
+	}
 
-
-if (!("classList" in document.documentElement) && Object.defineProperty && typeof HTMLElement !== 'undefined') {
 	Object.defineProperty(HTMLElement.prototype, 'classList', {
 		get: function() {
 			var self = this;
@@ -19,7 +20,7 @@ if (!("classList" in document.documentElement) && Object.defineProperty && typeo
 				}
 			}
 
-			var ret = {                    
+			var ret = {
 				add: update(function(classes, index, value) {
 					~index || classes.push(value);
 				}),
@@ -40,7 +41,7 @@ if (!("classList" in document.documentElement) && Object.defineProperty && typeo
 					return self.className.split(/\s+/)[i] || null;
 				}
 			};
-			
+
 			Object.defineProperty(ret, 'length', {
 				get: function() {
 					return self.className.split(/\s+/).length;
@@ -50,4 +51,6 @@ if (!("classList" in document.documentElement) && Object.defineProperty && typeo
 			return ret;
 		}
 	});
-}
+
+	return true;
+})();

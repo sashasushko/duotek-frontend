@@ -1,4 +1,4 @@
-@import '../vendor/normalize';
+@import '../vendor/normalize/normalize';
 
 @import 'helpers/sprite';
 @import 'helpers/media-queries';
@@ -6,7 +6,6 @@
 @import 'helpers/clearfix';
 @import 'helpers/visuallyHidden';
 @import 'helpers/collapseMargin';
-
 
 @import 'layout/grid';
 @import 'layout/header';

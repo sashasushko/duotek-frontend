@@ -1,6 +1,6 @@
 {
   "name": "duotek-frontend",
-  "version": "1.2.3",
+  "version": "1.2.5",
   "description": "Frontend template for a quick start.",
   "main": "gulpfile.js",
   "dependencies": {},
@@ -17,15 +17,14 @@
     "gulp-sourcemaps": "^1.9.1",
     "gulp-uglify": "^2.0.0",
     "gulp.spritesmith": "^6.2.1",
-    "merge-stream": "^1.0.1",
-    "normalize.css": "^5.0.0"
+    "merge-stream": "^1.0.1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sashasushko/duotek-frontend.git"
   },
   "author": "Sasha Sushko",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/sashasushko/duotek-frontend/issues"
   },
