@@ -1,47 +1,51 @@
-$breakpoints-names: (
-	xs
-	s
-	m
-	l
-	xl
-	xxl
-	xxxl
+$breakpoints-map: (
+	xs: 480,
+	s: 640,
+	m: 768,
+	l: 960,
+	xl: 1180,
+	xxl: 1600
 );
 
-$breakpoints-borders: (
-	480px,
-	640px,
-	768px,
-	960px,
-	1180px,
-	1400px,
-	1920px
-);
-
-@function get-breakpoints-borders($name) {
-	$borders-id: index($breakpoints-names, $name);
-	$borders-list: nth($breakpoints-borders, $borders-id);
-	@return $borders-list;
-}
-
-@mixin media($value-1, $value-2: false) {
-	$query: false;
-	@if $value-2 == "custom" {
-		$query: "max-width: $value-1+px";
-	} @else if $value-2 == "from" {
-		$breakpoints: get-breakpoints-borders($value-1) + 1;
-		$query: "min-width:#{$breakpoints}";
+@function get-breakpoints-value($value) {
+	@if (map-has-key($breakpoints-map, $value)) {
+		@return map-get($breakpoints-map, $value);
 	} @else {
-		$breakpoints: get-breakpoints-borders($value-1);
-		$query: "max-width:#{$breakpoints}";
+		@return $value;
 	}
-	@if $value-2 == "from" {
-		@media screen and (#{$query}) {
+}
+
+@mixin media($value-1: false, $value-2: false) {
+	$query: 0;
+	$query-to: 0;
+	@if ($value-1 == "from") {
+		$query: get-breakpoints-value($value-2) + px;
+		@media screen and (min-width: #{$query}) {
 			@content;
 		}
-	} @else if ($query) {
-		@media screen and (min-width: 0px) and (#{$query}) {
+	} @else if ($value-1 == "to") {
+		$query: get-breakpoints-value($value-2) + px;
+		@media screen and (max-width: #{$query}) {
+			@content;
+		}
+	} @else {
+		$query: get-breakpoints-value($value-1) + 1 + px;
+		$query-to: get-breakpoints-value($value-2) + px;
+		@media screen and (min-width: #{$query}) and (max-width: #{$query-to}) {
 			@content;
 		}
 	}
 }
+
+/*
+Использование: 
+@include media 
+(to, xs) => screen and (max-width: 480)
+(to, 500) => screen and (max-width: 500)
+(from, xs) => (min-width: 480)
+(from, 500) => (min-width: 500)
+(xs, s) => (min-width: 481) and (max-width: 640)
+(400, 500) => (min-width: 401) and (max-width: 500)
+(xs, 500) => (min-width: 481) and (max-width: 500)
+*/
+
